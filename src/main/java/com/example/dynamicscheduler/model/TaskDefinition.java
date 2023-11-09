@@ -9,10 +9,10 @@ import java.util.Map;
 public class TaskDefinition {
 
     private String name;
-    private String descroption;
+    private String description;
     private String schedule;
     private HttpTarget httpTarget;
-    private boolean oneInstance;
+    private boolean onlyOneInstance;
 
     @Data
     public static class HttpTarget {

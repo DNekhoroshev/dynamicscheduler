@@ -16,9 +16,11 @@ public class JobSchedulingController {
     private TaskSchedulingService taskSchedulingService;
 
     @PostMapping(path="/create-task", consumes = "application/json", produces="application/json")
-    public void scheduleATask(@RequestBody TaskDefinition taskDefinition) {
+    public String scheduleATask(@RequestBody TaskDefinition taskDefinition) {
         TaskInstance task = new TaskInstance(taskDefinition);
-        taskSchedulingService.scheduleATask(UUID.randomUUID().toString(), task);
+        String taskId = UUID.randomUUID().toString();
+        taskSchedulingService.scheduleATask(taskId, task);
+        return String.format("{ \"ID\" : \"%s\"}", taskId);
     }
 
     @GetMapping(path="/stop-task/{jobid}")
